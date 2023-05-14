@@ -1,6 +1,6 @@
 package homework3;
 
 public interface IAnimals {
-    int run (int distance);
-    int swim (int distance);
+    String run (int distance);
+    String swim (int distance);
 }

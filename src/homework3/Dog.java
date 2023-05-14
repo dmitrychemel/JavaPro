@@ -6,24 +6,22 @@ public class Dog extends Animal {
     }
 
     @Override
-    public int run (int distance){
+    public String run (int distance){
         if(this.run>distance){
-            System.out.print(type + "Пробежала дистанцию ");
+            return type + " Пробежал дистанцию " + distance + " метров";
         }
         else {
-            System.out.print(type + "Не пробежала дистанцию ");
+            return type + " Не пробежал дистанцию "+ distance + " метров";
         }
-        return distance;
     }
     @Override
-    public int swim(int distance) {
+    public String swim(int distance) {
         if(this.swim>distance){
-            System.out.print(type + "Проплыла дистанцию ");
+            return type + " Проплыл дистанцию "+ distance + " метров";
         }
         else {
-            System.out.print(type + "Не проплыла дистанцию ");
+            return type + " Не проплыл дистанцию "+ distance + " метров";
         }
-        return distance;
     }
 }
 
