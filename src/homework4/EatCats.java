@@ -16,6 +16,7 @@ public class EatCats {
         };
         Plate plate = new Plate(60);
 
+
         for(Cat cat: cats){
             cat.eat(plate);
             System.out.println(cat.toString());
