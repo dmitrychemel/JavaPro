@@ -22,7 +22,7 @@ public class RubberArray {
         array = newArray;
     }
 
-    public void addAll(int index, int[] array){
+    public void addAll(int index, int[] array) {
         int[] newArray = new int[this.array.length + array.length];
         System.arraycopy(this.array, 0, newArray, 0, index);
         System.arraycopy(array, 0, newArray, index, array.length);
@@ -30,7 +30,7 @@ public class RubberArray {
         this.array = newArray;
     }
 
-    public void addAll(int[] array){
+    public void addAll(int[] array) {
         int[] newArray = new int[this.array.length + array.length];
         System.arraycopy(this.array, 0, newArray, 0, this.array.length);
         System.arraycopy(array, 0, newArray, this.array.length, array.length);
@@ -38,6 +38,7 @@ public class RubberArray {
     }
 
     public int get(int index) {
+
         return array[index];
     }
 
@@ -47,6 +48,22 @@ public class RubberArray {
         System.arraycopy(array, index + 1, newArray, index, array.length - index - 1);
         array = newArray;
     }
+
+    public void removeValue(int value) {
+
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == value) {
+                int index = i;
+
+                int[] newArray = new int[array.length - 1];
+                System.arraycopy(array, 0, newArray, 0, index);
+                System.arraycopy(array, index + 1, newArray, index, array.length - index - 1);
+                array = newArray;
+            }
+        }
+
+    }
+
 
     public boolean contains(int value) {
         for (int arrays: array) {
@@ -76,10 +93,7 @@ public class RubberArray {
     }
 
     public boolean isEmpty() {
-        if(array.length == 0) {
-            return true;
-        }
-        return false;
+        return array.length == 0;
     }
 
     @Override

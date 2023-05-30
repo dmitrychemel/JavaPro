@@ -72,6 +72,8 @@ public class Lesson6 {
         System.out.println("*****");
         rb.addAll(1, newRb);
         System.out.println(rb);
+        rb.removeValue(5);
+        System.out.println(rb);
 
         System.out.println("1 = " + rb.contains(23));
         System.out.println("2 = " + rb.contains(1));
