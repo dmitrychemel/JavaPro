@@ -27,6 +27,6 @@ public class Dishwasher implements Iinfo{
     public void turnOff() {
         isOn = false;
         insideDishes = false;
-        System.out.println("Телевизор выключена");
+        System.out.println("Посудомойка выключена");
     }
 }
