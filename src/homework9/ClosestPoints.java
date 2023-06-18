@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+import static homework9.Points.findClosestPoints;
+
 /**
  * Java Pro. Homework #9
  * @author Dzmitry Chemel
@@ -27,9 +29,4 @@ public class ClosestPoints {
         }
     }
 
-    public static List<Points> findClosestPoints(List<Points> points, int n){
-        points.sort(Comparator.comparingDouble(Points::getDistanceToStart));
-
-        return points.subList(0,Math.min(n, points.size()));
-    }
 }
