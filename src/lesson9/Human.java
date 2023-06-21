@@ -1,8 +1,8 @@
 package lesson9;
 
 public class Human implements Comparable<Human>{
-    String name;
-    String secondName;
+    private String name;
+    private String secondName;
 
     public Human(String name, String secondName) {
         this.name = name;
