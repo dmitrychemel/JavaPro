@@ -18,6 +18,21 @@ public class CountingTime {
         List<String> linkedList = new LinkedList<>();
         List<String> arrayList = new ArrayList<>();
 
+        for (int i = 0; i < 1000; i++) {
+
+        }
+        for (int i = 0; i < 5; i++) {
+            long startTime = System.currentTimeMillis();
+            addRandomValuesToTail(linkedList);
+            long endTime = System.currentTimeMillis();
+            System.out.printf("Добавление в %s заняла %s мс%n", "LinkedList", endTime - startTime);
+
+            long startTime1 = System.currentTimeMillis();
+            addRandomValuesToTail(arrayList);
+            long endTime1 = System.currentTimeMillis();
+            System.out.printf("Добавление в %s заняла %s мс%n", "ArrayListList", endTime1 - startTime1);
+
+        }
         long startTime = System.currentTimeMillis();
         addRandomValuesToTail(linkedList);
         long endTime = System.currentTimeMillis();
@@ -111,6 +126,9 @@ public class CountingTime {
         for (int i = 0; i < COLLECTION_SIZE; i++) {
             linkedList.add(generateRandomValue());
         }
+//        for(String str: linkedList){
+//            linkedList.add(generateRandomValue());
+//        }
     }
 
     public static String generateRandomValue() {

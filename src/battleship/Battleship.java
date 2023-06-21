@@ -1,5 +1,6 @@
 package battleship;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Battleship {
@@ -19,9 +20,20 @@ public class Battleship {
         placeShips(playerName1, battleField1);
         placeShips(playerName2, battleField2);
 
+        while (true) {
+            makeTurn(playerName1, monitor1, battleField2);
+            if (isWinCondition()) {
+                break;
+            }
+            makeTurn(playerName2, monitor2, battleField1);
+            if (isWinCondition()) {
+                break;
+            }
+        }
+
     }
 
-    public static void placeShips(String playerName, int [][] battleField) {
+    public static void placeShips(String playerName, int[][] battleField) {
         int deck = 4;
         while (deck >= 1) {
             System.out.println();
@@ -36,8 +48,10 @@ public class Battleship {
             System.out.println("1. Vertical");
             System.out.println("2. Horizontal");
             int direction = scan.nextInt();
-
-            int deckCounter = deck;
+            if(!isAvailable(x, y, deck, direction, battleField)){
+                System.out.println("Wrong coordinates!");
+                continue;
+            }
             for (int i = 0; i < deck; i++) {
                 if (direction == 1) {
                     battleField[x][y + i] = 1;
@@ -46,6 +60,7 @@ public class Battleship {
                 }
             }
             deck--;
+            clearScreen();
         }
     }
 
@@ -64,7 +79,7 @@ public class Battleship {
         }
     }
 
-    public static void makeTurn(String playerName, int[][] monitor, int[][] battleField){
+    public static void makeTurn(String playerName, int[][] monitor, int[][] battleField) {
         while (true) {
             System.out.println(playerName + ", please, make your turn");
             System.out.println("  0 1 2 3 4 5 6 7 8 9");
@@ -90,8 +105,103 @@ public class Battleship {
                 monitor[x][y] = 2;
             } else {
                 System.out.println("Miss, Your opponents turn!");
+                monitor[x][x] = 1;
                 break;
             }
+        }
+    }
+
+    public static boolean isWinCondition() {
+        int counter1 = 0;
+        for (int i = 0; i < monitor1.length; i++) {
+            for (int j = 0; j < monitor1[i].length; j++) {
+                if (monitor1[i][j] == 2) {
+                    counter1++;
+                }
+            }
+        }
+
+        int counter2 = 0;
+        for (int i = 0; i < monitor2.length; i++) {
+            for (int j = 0; j < monitor2[i].length; j++) {
+                if (monitor1[i][j] == 2) {
+                    counter2++;
+                }
+            }
+        }
+
+        if (counter1 >= 10) {
+            System.out.println(playerName1 + "WIN!!!");
+            return true;
+        }
+
+        if (counter2 >= 10) {
+            System.out.println(playerName2 + "WIN!!!");
+            return true;
+        }
+
+        return false;
+    }
+
+    public static boolean isAvailable(int x, int y, int deck, int rotation, int[][] battleField) {
+
+        if (rotation == 1) {
+            if (y + deck > battleField.length) {
+                return false;
+            }
+        }
+        if (rotation == 2) {
+            if (x + deck > battleField.length) {
+                return false;
+            }
+        }
+
+
+        while (deck != 0) {
+            for (int i = 0; i < deck; i++) {
+                int xi = 0;
+                int yi = 0;
+                if (rotation == 1) {
+                    yi = i;
+                } else {
+                    xi = i;
+                }
+
+                if (x + 1 + xi < battleField.length && x + 1 + xi >= 0) {
+                    if (battleField[x + 1 + xi][y + yi] != 0) {
+                        return false;
+                    }
+                }
+
+                if (x - 1 + xi < battleField.length && x - 1 + xi >= 0) {
+                    if (battleField[x - 1 + xi][y + yi] != 0) {
+                        return false;
+                    }
+                }
+
+                if (y + 1 + yi < battleField.length && y + 1 + yi >= 0) {
+                    if (battleField[x + xi][y + 1 + yi] != 0) {
+                        return false;
+                    }
+                }
+
+                if (y - 1 + yi < battleField.length && y - 1 + yi >= 0) {
+                    if (battleField[x + xi][y - 1 + yi] != 0) {
+                        return false;
+                    }
+                }
+            }
+            deck--;
+        }
+
+        return true;
+    }
+
+    public static void clearScreen()  {
+        try {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } catch (InterruptedException | IOException e) {
+            e.printStackTrace();
         }
     }
 }
