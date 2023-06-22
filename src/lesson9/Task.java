@@ -3,10 +3,10 @@ package lesson9;
 import java.time.LocalDate;
 
 public class Task implements Comparable<Task>{
-    private int id;
-    private LocalDate dateOfTask;
-    private String priority;
-    private String status;
+    private final int id;
+    private final LocalDate dateOfTask;
+    private final String priority;
+    private final String status;
 
     public Task(int id,LocalDate dateOfTask, String priority, String status) {
         this.dateOfTask = dateOfTask;
