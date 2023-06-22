@@ -9,12 +9,16 @@ public class Lesson10 {
         System.out.println("Напиши два слова");
         String firstWord = scan.nextLine();
         String secondWord = scan.nextLine();
-
+        scan.close();
 
         System.out.println("Слова обратные: " + reverseWord(firstWord, secondWord));
     }
 
     public static boolean reverseWord (String firstWord, String secondWord){
+
+        if(firstWord.length() == secondWord.length()){
+            return false;
+        }
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < firstWord.length(); i++) {
             stack.push(firstWord.charAt(i));
