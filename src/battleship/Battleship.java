@@ -47,20 +47,19 @@ public class Battleship {
             System.out.println("Choose direction:");
             System.out.println("1. Vertical");
             System.out.println("2. Horizontal");
-            int direction = scan.nextInt();
-            if(!isAvailable(x, y, deck, direction, battleField)){
+            int orientation = scan.nextInt();
+            if(!isAvailable(x, y, deck, orientation, battleField)){
                 System.out.println("Wrong coordinates!");
                 continue;
             }
             for (int i = 0; i < deck; i++) {
-                if (direction == 1) {
+                if (orientation == 1) {
                     battleField[x][y + i] = 1;
                 } else {
                     battleField[x + i][y] = 1;
                 }
             }
-            deck--;
-            clearScreen();
+            deck--;;
         }
     }
 
@@ -197,11 +196,4 @@ public class Battleship {
         return true;
     }
 
-    public static void clearScreen()  {
-        try {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } catch (InterruptedException | IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
