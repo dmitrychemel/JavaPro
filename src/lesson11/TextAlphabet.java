@@ -5,30 +5,32 @@ import java.util.*;
 public class TextAlphabet {
 
     static final String TEXT = "но я должен объяснить вам как родилась вся эта ошибочная идея отрицания удовольствия и восхваления боли и я дам вам полный отчет о системе и излагаю фактические учения великого исследователя истины создатель человеческого счастья Никто не отвергает не любит и не избегает удовольствия как такового потому что это удовольствие а потому что те кто не знает как стремиться к удовольствию сталкиваются с чрезвычайно болезненными последствиями";
-    static final String SPACE = " ";
 
     public static void main(String[] args) {
+        Map <Character, Integer> alphabet = new HashMap<>();
 
-        char[] text = TEXT.toCharArray();
+        for (int i = 0; i < TEXT.length(); i++) {
+            Character ch = Character.toUpperCase(TEXT.charAt(i));
+            if(ch.equals(' ')){
+                continue;
+            }
 
-        ArrayList<Character> alphabet = new ArrayList<>();
-        for (char c : text) {
-            alphabet.add(c);
-        }
-
-        Map <Character, Integer> text1 = new HashMap<>();
-
-        for (int i = 0; i < alphabet.size(); i++) {
-            if(text1.containsKey(alphabet.get(i))){
-                int count = text1.get(alphabet.get(i));
+            if(alphabet.containsKey(TEXT.charAt(i))){
+                Integer count = alphabet.get(ch);
                 count++;
-                text1.put(alphabet.get(i), count);
+                alphabet.put(TEXT.charAt(i), count);
             } else {
-                text1.put(alphabet.get(i), 1);
+                alphabet.put(ch, 1);
             }
         }
 
-        System.out.println(text1);
+        Set<Character> keys = alphabet.keySet();
 
+        Iterator<Character> keysIt = keys.iterator();
+        while (keysIt.hasNext()){
+            Character key = keysIt.next();
+            Integer value = alphabet.get(key);
+            System.out.println(key + " -> " + value);
+        }
     }
 }
