@@ -37,7 +37,6 @@ public class Exercises {
             }
             if (overlap == 0) {
                 way.put(key, trips.get(key));
-                trips.remove(key);
                 break;
             }
         }
@@ -49,10 +48,10 @@ public class Exercises {
         Map<String, String> way = startPosition(trips);
         Set<String> setKeys = trips.keySet();
 
-        for (int i = 0; i < trips.size(); i++) {
-            for (String value : way.values()) {
-                for (String key : setKeys) {
-                    if (value.equals(key)) {
+        while(way.size() != trips.size()) {
+            for (String key : setKeys) {
+                for (String value : way.values()) {
+                    if (key.equals(value)) {
                         way.put(key, trips.get(key));
                     }
                 }
