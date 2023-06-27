@@ -3,7 +3,7 @@ package homework13;
 import java.util.*;
 
 /**
- * Java Pro. Homework #12
+ * Java Pro. Homework #13
  *
  * @author Dzmitry Chemel
  * @version 27 June 2023
