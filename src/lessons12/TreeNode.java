@@ -63,8 +63,6 @@ public class TreeNode {
     }
 
     public void printAllTree(int level) {
-//        StringBuilder tree = new StringBuilder();
-//            tree.append("\t");
 
         System.out.println("Уровень - " + level + " "+ key + ": " + value);
 
