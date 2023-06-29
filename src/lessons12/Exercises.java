@@ -25,7 +25,7 @@ public class Exercises {
         StringBuffer sb = new StringBuffer();
 
         for(String word: words){
-            if(!translationRussian.containsKey(word)){
+            if(translationRussian.containsKey(word)){
                 sb.append(translationRussian.get(word));
                 sb.append(SPACE);
             } else {
