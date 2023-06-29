@@ -28,16 +28,9 @@ public class Exercises {
         Map<String, String> way = new LinkedHashMap<>();
         Set<String> setKeys = trips.keySet();
 
-        for (String key : setKeys) {
-            int overlap = 0;
-            for (String city : setKeys) {
-                if (key.equals(trips.get(city))) {
-                    overlap++;
-                }
-            }
-            if (overlap == 0) {
-                way.put(key, trips.get(key));
-                break;
+        for(String key : setKeys){
+            if(!trips.containsValue(key)){
+                way.put(key,trips.get(key));
             }
         }
 
@@ -50,10 +43,8 @@ public class Exercises {
 
         while(way.size() != trips.size()) {
             for (String key : setKeys) {
-                for (String value : way.values()) {
-                    if (key.equals(value)) {
-                        way.put(key, trips.get(key));
-                    }
+                if (way.containsValue(key)) {
+                    way.put(key, trips.get(key));
                 }
             }
         }
