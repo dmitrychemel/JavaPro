@@ -62,16 +62,14 @@ public class TreeNode {
         return null;
     }
 
-    public void printAllTree(int indentationLevel) {
-        StringBuilder tree = new StringBuilder();
-        for (int i = 0; i < indentationLevel; i++) {
-            tree.append("\t");
-        }
+    public void printAllTree(int level) {
+//        StringBuilder tree = new StringBuilder();
+//            tree.append("\t");
 
-        System.out.println("Уровень - " + indentationLevel + " "+ key + ": " + value);
+        System.out.println("Уровень - " + level + " "+ key + ": " + value);
 
         for (TreeNode child : children) {
-            child.printAllTree(indentationLevel + 1);
+            child.printAllTree(level + 1);
         }
     }
 }
