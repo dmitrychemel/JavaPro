@@ -19,12 +19,16 @@ public class Exercises {
 
     }
 
+    private static String[] splitWords(String text){
+        String[] words = text.toLowerCase().split(SPACE);
+        return words;
+    }
+
     private static StringBuffer translation(TreeMap<String, String> translationRussian, String text) {
 
-        String[] words = TEXT.toLowerCase().split(SPACE);
         StringBuffer sb = new StringBuffer();
 
-        for(String word: words){
+        for(String word: splitWords(TEXT)){
             if(translationRussian.containsKey(word)){
                 sb.append(translationRussian.get(word));
                 sb.append(SPACE);

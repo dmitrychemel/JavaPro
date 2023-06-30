@@ -1,33 +1,27 @@
-package lessons12;
+package homework14;
 
 import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class TreeNode {
-    private String key;
-    private String value;
-    private TreeSet<TreeNode> children;
+
+    private final String key;
+    private final String value;
+    private final TreeSet<TreeNode> children;
 
     public TreeNode(String key, String value) {
         this.key = key;
         this.value = value;
         this.children = new TreeSet<>(Comparator.comparing(TreeNode::getKey));
-    }
 
-    @Override
-    public String toString() {
-        return "TreeNode{" +
-                "key='" + key + '\'' +
-                ", value='" + value + '\'' +
-                '}';
     }
 
     public void add(TreeNode child){
         children.add(child);
     }
 
-    public boolean remove(TreeNode child) {
+    public boolean remove(TreeNode child){
         return children.remove(child);
     }
 
@@ -53,44 +47,45 @@ public class TreeNode {
         }
 
         for(TreeNode child: children){
-            TreeNode found = child.findTreeNodeDFS(key);
-            if(found != null){
-                return found;
+            TreeNode find = child.findTreeNodeDFS(key);
+            if(find != null){
+                return find;
             }
-        }
 
+        }
         return null;
     }
 
-    public void printAllTree(int level) {
+    public void printAllTree(){
+        System.out.println(key + ": " + value);
 
-        System.out.println("Уровень - " + level + " "+ key + ": " + value);
-
-        for (TreeNode child : children) {
-            child.printAllTree(level + 1);
+        for(TreeNode child: children){
+            child.printAllTree();
         }
     }
 
     public int heightTree(){
-        if (isLeaf()) {
+        if(this.isLeaf()){
             return 0;
         }
-        int maxHeight = 0;
+
+        int countHeight = 0;
         for(TreeNode child: children){
-            int childHeight = child.heightTree();
-            maxHeight = Math.max(maxHeight, childHeight);
+            int heightChild = child.heightTree();
+            countHeight = Math.max(countHeight, heightChild);
         }
 
-        return maxHeight + 1;
+        return countHeight +1;
     }
 
     public int totalEdges(){
-        if(isLeaf()){
+        if(this.isLeaf()){
             return 0;
         }
+
         int countEdges = 0;
         for(TreeNode child: children){
-            countEdges += child.totalEdges() + 1;
+            countEdges += child.totalEdges()+1;
         }
         return countEdges;
     }

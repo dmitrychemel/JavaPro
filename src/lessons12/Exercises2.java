@@ -19,5 +19,8 @@ public class Exercises2 {
         level1.printAllTree(0);
 
         System.out.println(level1.findTreeNodeDFS("РОП-4"));
+        System.out.println(level1.heightTree());
+        System.out.println(level1.totalEdges());
+        System.out.println(level1.totalKnots());
     }
 }
