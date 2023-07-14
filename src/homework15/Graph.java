@@ -33,10 +33,7 @@ public class Graph {
         for (int i = 0; i < matrix.length; i++) {
             if (matrix[start][i] == 1 && !check[i]) {
                 check[i] = true;
-                if(helper(i, target, check)){
-                    return true;
-                }
-
+                return helper(i, target, check);
             }
         }
 

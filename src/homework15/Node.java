@@ -25,10 +25,10 @@ public class Node {
         queue.add(this);
 
         while (!queue.isEmpty()) {
-            Node currentNode = queue.poll();
+            Node current = queue.poll();
             countNodes++;
 
-            for (Edge edges : currentNode.nodes) {
+            for (Edge edges : current.nodes) {
                 countEdges++;
                 Node neighbor = edges.node;
 
@@ -40,7 +40,7 @@ public class Node {
         }
 
         System.out.println("Узлов " + countNodes);
-        System.out.println("Ребер " + countEdges/2);
+        System.out.println("Ребер " + countEdges / 2);
     }
 
     public boolean findWay(Node target) {
@@ -51,9 +51,9 @@ public class Node {
     public boolean helper(Node current, Node target, List<Node> visitedNodes) {
         visitedNodes.add(current);
 
-        for(Edge edges: current.nodes){
+        for (Edge edges : current.nodes) {
             Node neighbor = edges.node;
-            if(current == target || (!visitedNodes.contains(neighbor)) && helper(neighbor, target, visitedNodes)){
+            if (current == target || (!visitedNodes.contains(neighbor)) && helper(neighbor, target, visitedNodes)) {
                 return true;
             }
         }
