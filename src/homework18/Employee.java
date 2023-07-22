@@ -26,6 +26,7 @@ public class Employee {
         double averageSalary = personList.stream().mapToDouble(Person::getSalary).average().orElse(0);
         System.out.println("Средняя зарплата: " + averageSalary);
 
+
         List<Person> salaryMore70000 = personList.stream().filter(person -> person.getSalary() > 70000).toList();
         System.out.println("Сотрудники с зарплатой > 70000:" + salaryMore70000);
 
